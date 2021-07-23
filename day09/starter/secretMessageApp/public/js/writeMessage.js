@@ -11,6 +11,17 @@ function numeric(inputtxt){
     }
 }
 
+function isUpper(txt){
+    const text = txt.toLowerCase(); 
+    if(text!==txt){
+        // console.log(txt.toLowerCase());
+        // console.log(txt);
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 
 
 
@@ -23,11 +34,12 @@ const submitMessage = () =>{
 
     const messageLength = messageValue.length;
     const messageLimit = 25;
-    //console.log(numeric(messageValue));
-    console.log(isUpper(messageValue));
+    //console.log(numeric(passcodeValue));
+    //console.log(isUpper(passcodeValue));
     
     if(messageLength<=messageLimit){
-        if(numeric(messageValue)==true){
+        if(numeric(passcodeValue)==true && isUpper(passcodeValue)==true){
+            // Send to firebase
             firebase.database().ref().push({
             message: messageValue,
             passcode: passcodeValue
@@ -38,7 +50,7 @@ const submitMessage = () =>{
             alert("Make sure you have at least one capital letter and number!");
         }
     
-        // Send to firebase
+       
         
     }
     else{
