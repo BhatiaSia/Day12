@@ -24,12 +24,11 @@ function isUpper(txt){
 }
 
 
-
 const submitMessage = () =>{
     console.log('Submitting message...'); 
     const passcodeInput = document.querySelector("#passcode");
     const messageInput = document.querySelector("#message");
-    const passcodeValue = passcodeInput.value;
+    var passcodeValue = passcodeInput.value;
     const messageValue = messageInput.value;
 
     const messageLength = messageValue.length;
@@ -40,6 +39,13 @@ const submitMessage = () =>{
     if(messageLength<=messageLimit){
         if(numeric(passcodeValue)==true && isUpper(passcodeValue)==true){
             // Send to firebase
+            
+            var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+            hashObj.update(passcodeValue);
+            var hash = hashObj.getHash("HEX");
+            passcodeValue = hash;
+            console.log(passcodeValue);
+
             firebase.database().ref().push({
             message: messageValue,
             passcode: passcodeValue
@@ -49,9 +55,6 @@ const submitMessage = () =>{
         else{
             alert("Make sure you have at least one capital letter and number!");
         }
-    
-       
-        
     }
     else{
         alert(`Too many characters, please keep messages under ${messageLimit} characters!`);

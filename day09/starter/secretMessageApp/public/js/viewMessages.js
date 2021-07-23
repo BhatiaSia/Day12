@@ -7,7 +7,12 @@ const getMessages = () => {
 }
 
 const findMessage = (messages) => {
-    const passcodeAttempt = document.querySelector('#passcode').value;
+    var passcodeAttempt = document.querySelector('#passcode').value;
+    var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+    hashObj.update(passcodeAttempt);
+    var hash = hashObj.getHash("HEX");
+    passcodeAttempt = hash;
+    console.log(passcodeAttempt);
     for(message in messages) {
         const messageData = messages[message];
         if(messageData.passcode === passcodeAttempt) {
