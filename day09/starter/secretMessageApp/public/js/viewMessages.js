@@ -8,7 +8,7 @@ const getMessages = () => {
 
 const findMessage = (messages) => {
     var passcodeAttempt = document.querySelector('#passcode').value;
-    var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+    var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 3});
     hashObj.update(passcodeAttempt);
     var hash = hashObj.getHash("HEX");
     passcodeAttempt = hash;

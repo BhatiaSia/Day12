@@ -28,7 +28,7 @@ const submitMessage = () =>{
     console.log('Submitting message...'); 
     const passcodeInput = document.querySelector("#passcode");
     const messageInput = document.querySelector("#message");
-    var passcodeValue = passcodeInput.value;
+    //var passcodeValue = passcodeInput.value;
     const messageValue = messageInput.value;
 
     const messageLength = messageValue.length;
@@ -37,20 +37,22 @@ const submitMessage = () =>{
     //console.log(isUpper(passcodeValue));
     
     if(messageLength<=messageLimit){
-        if(numeric(passcodeValue)==true && isUpper(passcodeValue)==true){
+        if(numeric(passcodeInput.value)==true && isUpper(passcodeInput.value)==true){
             // Send to firebase
             
-            var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
-            hashObj.update(passcodeValue);
+            var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 3});
+            hashObj.update(passcodeInput.value);
             var hash = hashObj.getHash("HEX");
-            passcodeValue = hash;
-            console.log(passcodeValue);
+            passcodeInput.value = hash;
+            console.log(passcodeInput.value);
 
             firebase.database().ref().push({
             message: messageValue,
-            passcode: passcodeValue
+            passcode: passcodeInput.value
+            
             
             });
+            alert("Message sent :)");
         }
         else{
             alert("Make sure you have at least one capital letter and number!");
