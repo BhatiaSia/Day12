@@ -1,5 +1,5 @@
 //when page loads, check user logged in state
-
+let shouldWhite = true;
 const showNotes = () =>{
     document.querySelector("#app").innerHTML = "";
     firebase.auth().onAuthStateChanged(user => {
@@ -43,10 +43,17 @@ const writeNotesToHtml = (data) =>{
 const createHtmlForNote = (note)=>{
     //TODO: create the elements and put in the enote data 
     const colour = generateRandom();
+    let textColour;
+    if(shouldWhite===true){
+        textColour = 'rgb(255,255,255)'; 
+    }
+    else{
+        textColour = 'rgb(0,0,0)';
+    }
     return `<div class = "column is-one-third">
-                <div class="card" style=`+`background:${colour}`+`>
+                <div class="card" style=`+`background:${colour};color:${textColour}`+`>
                     <header class="card-header">
-                        <p class="card-header-title">
+                        <p class="card-header-title" style=color:`+`${textColour}`+`>
                             ${note.title}
                         </p>
                     </header>
@@ -60,11 +67,14 @@ const createHtmlForNote = (note)=>{
             </div>`;
 };
 
+
 function generateRandom(){
     const r = Math.floor(Math.random() * (255));
     const g = Math.floor(Math.random() * (255));
     const b = Math.floor(Math.random() * (255));
     const hexCode = `rgb(${r},${g},${b})`;
+    shouldWhite = ((r*0.299 + g*0.587 + b*0.114) > 186) ? false : true;
+    console.log(hexCode); 
     //document.querySelector(".card").setAttribute("style", `background: ${hexCode};`);
     return hexCode;
 }

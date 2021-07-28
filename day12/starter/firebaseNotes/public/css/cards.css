@@ -10,6 +10,7 @@ input::placeholder {
 .card {
   overflow: hidden;
   background: rgb(343,53,242);
+  color: rgb(0,0,0);
   /* color: var(--bg); */
 }
 
