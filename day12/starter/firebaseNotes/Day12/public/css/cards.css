@@ -5,7 +5,7 @@ input::placeholder {
 .navbar {
   background: var(--card-bg);
 } 
-
+ 
 /* Card start*/
 .card {
   overflow: hidden;
