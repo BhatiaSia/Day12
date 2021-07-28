@@ -26,11 +26,11 @@ const handleNoteSubmit = () => {
     tag: noteTag.value
      });
   }
+  //clear form so we can input new
   noteTitle.value = "";
-    noteText.value = "";
-    noteTag.value = "";
+  noteText.value = "";
+  noteTag.value = "";
 
   
-  // 3. Clear the form so that we can write a new note
  
 }
