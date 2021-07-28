@@ -1,5 +1,5 @@
 //when page loads, check user logged in state
-let shouldWhite = true;
+let shouldWhite = true; 
 const showNotes = () =>{
     document.querySelector("#app").innerHTML = "";
     firebase.auth().onAuthStateChanged(user => {
