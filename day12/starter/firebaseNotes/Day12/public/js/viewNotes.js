@@ -3,7 +3,7 @@ let shouldWhite = true;
 const showNotes = () =>{
     document.querySelector("#app").innerHTML = "";
     firebase.auth().onAuthStateChanged(user => {
-            if(user){ 
+            if(user){  
                 const googleUserId = user.uid;
                 const tag = document.querySelector("#searchBox").value.toLowerCase().trim();
                 

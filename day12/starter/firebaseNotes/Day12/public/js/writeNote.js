@@ -9,7 +9,7 @@ window.onload = (event) => {
     } else {
       window.location = 'index.html'; // If not logged in, navigate back to login page.
     }
-  });
+  }); 
 };
 
 const handleNoteSubmit = () => {

@@ -9,7 +9,7 @@
       "**/.*",
       "**/node_modules/**"
     ] 
-  },
+  }, 
   "emulators": {
     "auth": {
       "port": 8111
